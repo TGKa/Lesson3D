@@ -1,48 +1,54 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
+    private const int LeftMouseButton = 0;
+
     private WaitForSeconds _delay = new WaitForSeconds(0.5f);
-    private Coroutine _jobCounter;
+    private Coroutine _job;
     private int _value;
-    private bool _isCounterWorking = false;
+    private bool _isWorking = false;
 
     public event Action<int> ValueChanged;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        GetMouseButton();
+    }
+
+    private void GetMouseButton()
+    {
+        if (Input.GetMouseButtonDown(LeftMouseButton))
         {
-            if (_isCounterWorking)
+            if (_isWorking)
             {
-                _isCounterWorking = false;
-                StopCounter();
+                _isWorking = false;
+                Stop();
             }
             else
             {
-                _isCounterWorking = true;
-                StartCounter();
+                _isWorking = true;
+                Begin();
             }
         }
     }
 
-    private void StartCounter()
+    private void Begin()
     {        
-        _jobCounter = StartCoroutine(Calculate());
+        _job = StartCoroutine(Calculate());
     }
 
-    private void StopCounter()
+    private void Stop()
     {
-        if (_jobCounter != null)
-            StopCoroutine(_jobCounter);
+        if (_job != null)
+            StopCoroutine(_job);
     }
 
     private IEnumerator Calculate()
     {
-        while (_isCounterWorking)
+        while (_isWorking)
         {
             yield return _delay;
 
