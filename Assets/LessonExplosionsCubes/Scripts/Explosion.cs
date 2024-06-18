@@ -42,7 +42,7 @@ public class Explosion : MonoBehaviour
         foreach (var hit in hits)
             if (hit.attachedRigidbody != null)
                 objects.Add(hit.attachedRigidbody);
-        Debug.Log(objects.Count);
+        
         return objects;
     }
 
