@@ -1575,6 +1575,8 @@ MonoBehaviour:
   - {fileID: 1703128849}
   _prefab: {fileID: 402729271965009356, guid: 00db905cf7e25274a8f8970582e1c2a2, type: 3}
   _container: {fileID: 1321534265}
+  _explosionForce: 300
+  _explosionRadius: 0.1
 --- !u!1 &1371119966
 GameObject:
   m_ObjectHideFlags: 0
