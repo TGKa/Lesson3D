@@ -3,12 +3,12 @@ using UnityEngine.Events;
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private MeshRenderer _mesh;
     
     private int _chanceFalling = 100;
 
     public event UnityAction<Cube,bool> Clicked;
+    public event UnityAction Destroyed;
 
     public int ChanceFalling => _chanceFalling;
 
@@ -17,7 +17,12 @@ public class Cube : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Clicked?.Invoke(this,IsNewSpawn());
+        bool isNewSpawn = IsNewSpawn();
+        Clicked?.Invoke(this, isNewSpawn);
+
+        if (isNewSpawn == false)
+            Destroyed?.Invoke();
+
         Destroy(gameObject);
     }
 
