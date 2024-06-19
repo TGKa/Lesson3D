@@ -8,7 +8,6 @@ public class Cube : MonoBehaviour
     private int _chanceFalling = 100;
 
     public event UnityAction<Cube,bool> Clicked;
-    public event UnityAction Destroyed;
 
     public int ChanceFalling => _chanceFalling;
 
@@ -17,11 +16,7 @@ public class Cube : MonoBehaviour
 
     private void OnMouseDown()
     {
-        bool isNewSpawn = IsNewSpawn();
-        Clicked?.Invoke(this, isNewSpawn);
-
-        if (isNewSpawn == false)
-            Destroyed?.Invoke();
+        Clicked?.Invoke(this, IsNewSpawn());
 
         Destroy(gameObject);
     }
@@ -46,6 +41,6 @@ public class Cube : MonoBehaviour
         int maxNumberRandom = 100;
         int random = Random.Range(1, maxNumberRandom + 1);
 
-        return random <= _chanceFalling ? true : false;
+        return random <= _chanceFalling;
     }
 }

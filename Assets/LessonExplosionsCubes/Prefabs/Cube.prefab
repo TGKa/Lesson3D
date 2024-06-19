@@ -143,5 +143,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cube: {fileID: 402729271965009356}
   _collider: {fileID: 402729271965009344}
-  _startingExplosionForce: 1000
-  _startingExplosionRadius: 1
+  _startingForce: 500
+  _startingRadius: 1
