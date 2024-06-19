@@ -5,9 +5,7 @@ namespace LessonGeneratingEnemy
 {
     public class Spawner : MonoBehaviour
     {
-        [SerializeField] private Transform[] _points;
-        [SerializeField] private Unit _prefab;
-        [SerializeField] private Transform _container;
+        [SerializeField] private SpawnerPoint[] _points;
         [SerializeField] private float _delay;
 
         private void Start()
@@ -22,8 +20,8 @@ namespace LessonGeneratingEnemy
             while (true)
             {
                 int index = Random.Range(0, _points.Length);
-                Instantiate(_prefab, _points[index].position, _points[index].rotation, _container);
-
+                _points[index].Spawn();
+                
                 yield return delay;
             }
         }
